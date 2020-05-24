@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A simple backend (read/write to DynamoDB) with a RESTful API endpoint
+  using Amazon API Gateway.
+Resources:
+  helloworldpython3:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://soumyas-sam-demo-bucket/e2abdd19955ba56bf2e540a1fedc25a1
+      Description: A starter AWS lambda function for testing API gateway in SAM.
+      Timeout: 3
+      Events:
+        HelloWorldSAMAPI:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
